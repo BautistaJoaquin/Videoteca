@@ -1,0 +1,75 @@
+@model challenge_NET.Models.Personaje;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-uppercase">Detalle de Personaje</h3>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Edad)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Edad)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Peso)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Peso)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Historia)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Historia)
+            </dd>
+            
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Imagen)
+            </dt>
+            <dd class="col-sm-10">
+                <img src="~/img/Personajes/@Model.Imagen" class="img-thumbnail" height="100" width="100" asp-append-version="true" />
+            </dd>
+
+            <dt>
+            @Html.DisplayNameFor(model => model.PersonajePelicula)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Cali</th>
+                    <th>Fecha</th>
+                </tr>
+                @foreach (var item in Model.PersonajePelicula)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pelicula.Calificacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pelicula.FechaCreacion)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+            
+        </dl>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.PersonajeId" class="btn btn-sm btn-info rounded-0"><i class="fa fa-pencil-alt"></i> Editar</a>
+            <a asp-action="Delete" asp-route-id="@Model.PersonajeId" class="btn btn-sm btn-danger rounded-0"><i class="fa fa-trash-alt"></i> Eliminar</a>
+            <a asp-action="Index" class="btn btn-sm btn-primary rounded-0"><i class="fas fa-fast-backward"></i> Regresar</a>
+        </div>
+    </div>
+</div>
